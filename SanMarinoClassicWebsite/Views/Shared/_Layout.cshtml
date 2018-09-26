@@ -1,0 +1,139 @@
+﻿
+@using System.Security.Claims
+@using System.Threading.Tasks
+@using SanMarinoClassicWebsite.Auth
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IAuthorizationService AuthorizationService
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>San Marino Classic Website</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="~/Homepage/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Navigation -->
+
+    <div class="fixed-top">
+        <nav id="keme" class="navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <i class="fa fa-phone"></i> <a href="#" style="text-decoration: none; color: #f1f1f1;"> 245 13 99 &nbsp; </a>
+                    <i class="fa fa-envelope"></i> <a href="#" style="text-decoration: none; color: #f1f1f1;"> inquiry@gmail.com </a>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#home"><img src="~/Images/smcLogo.png"></a>
+        
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a asp-controller="Home" asp-action="Index" id="list" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="list" class="nav-link" href="#team">Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="list" class="nav-link" href="#contact">Contact Us</a>
+                        </li>
+
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+
+                        {
+                            @await Component.InvokeAsync("AdminMenu")
+
+
+                        }
+                    </ul>
+                    @await Html.PartialAsync("LoginPartial")
+                </div>
+            </div>
+        </nav>
+        <div id="home"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+<!-- Scroll Smoothing -->
+<script>
+    $(function () {
+        // Smooth Scrolling
+        $('a[href*="#"]:not([href="#"])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+<!--- End -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#scroll').fadeIn();
+            } else {
+                $('#scroll').fadeOut();
+            }
+        });
+        $('#scroll').click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
+    });
+</script>
+<a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180923113341_ApplicationUserUpdate.cs" />
+    <Compile Remove="Migrations\20180923113341_ApplicationUserUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20180924074636_ApplicationUser.cs" />
+    <Compile Remove="Migrations\20180924074636_ApplicationUser.Designer.cs" />
+    <Compile Remove="Migrations\20180924083534_ApplicationUserUpdated.cs" />
+    <Compile Remove="Migrations\20180924083534_ApplicationUserUpdated.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Tenants\Controllers\" />
+    <Folder Include="Areas\Tenants\Data\" />
+    <Folder Include="Areas\Tenants\Models\" />
+    <Folder Include="Areas\Tenants\Views\" />
+  </ItemGroup>
+
+</Project>
