@@ -58,7 +58,20 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-primary" value="Save user" />
-            <a asp-action="Index" class="btn btn-primary">Cancel</a>
+            <a asp-action="UserManagement" class="btn btn-primary">Cancel</a>
         </div>
     </div>
 </form>
+
+<h3>Claims for this User</h3>
+<ul>
+    @foreach(var claim in Model.UserClaims)
+    {
+        <li>
+            @claim
+        </li>
+
+    }
+</ul>
+
+<a asp-action="ManageClaimsForUser" asp-route-userid="@Model.Id" class="btn btn-primary">Manage Claims</a>

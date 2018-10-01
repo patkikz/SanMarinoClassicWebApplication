@@ -49,6 +49,11 @@ namespace SanMarinoClassicWebsite
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddMvc();
+
+            services.AddAuthorization(options =>
+                {
+                    options.AddPolicy("AdministratorOnly", policy => policy.RequireRole("Administrator"));
+                });
             services.AddMemoryCache();
             services.AddSession();
         }
@@ -65,6 +70,7 @@ namespace SanMarinoClassicWebsite
             {
                 app.UseExceptionHandler("/AppException");
             }
+
             app.UseStaticFiles();
             app.UseSession();
             app.UseAuthentication();

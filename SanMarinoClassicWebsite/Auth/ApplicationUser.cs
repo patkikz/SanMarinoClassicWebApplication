@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SanMarinoClassicWebsite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace SanMarinoClassicWebsite.Auth
         public string City { get; set; }
 
         public string Country { get; set; }
+
+        public string  Claims { get; set; }
 
     }
 }

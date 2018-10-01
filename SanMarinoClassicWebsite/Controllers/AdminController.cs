@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using SanMarinoClassicWebsite.ViewModels;
 using SanMarinoClassicWebsite.Auth;
 
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SanMarinoClassicWebsite.Controllers
 {
-    [Authorize(Roles ="Administrator")]
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -24,17 +25,19 @@ namespace SanMarinoClassicWebsite.Controllers
             _roleManager = roleManager;
         }
 
+        // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
         }
-            
+
         public IActionResult UserManagement()
         {
             var users = _userManager.Users;
 
             return View(users);
         }
+
         public IActionResult AddUser()
         {
             return View();
@@ -49,12 +52,9 @@ namespace SanMarinoClassicWebsite.Controllers
             {
                 UserName = addUserViewModel.UserName,
                 Email = addUserViewModel.Email,
-                
-                City = addUserViewModel.City,
                 Birthdate = addUserViewModel.Birthdate,
+                City = addUserViewModel.City,
                 Country = addUserViewModel.Country
-
-
             };
 
             IdentityResult result = await _userManager.CreateAsync(user, addUserViewModel.Password);
@@ -75,13 +75,13 @@ namespace SanMarinoClassicWebsite.Controllers
         {
             var user = await _userManager.FindByIdAsync(id);
 
-            if (user != null)
-                //var editVm = // dapat masupplayan mo dito si editVm mo // okay sir. Kasi yung error mo ay, si view nageexpect ng EditViewModel, yung sa previous code mo, si ApplicationUser ba yun? or whatever. So dapat mo masupplyan si editviewmodel and sya yung ireturn mo. Nakuhan mo yung hint ko? :) opo sir try ko po gawin sinabi nyo
-                //    // sige sige saka wait lang parang ma problem sa git natin. Kasi nasama hata yung previous git mo last 3 days. pero double check ko lang
-                //return View(editVm);
-                return View(); // null to
+            if (user == null)
+                return RedirectToAction("UserManagement", _userManager.Users);
 
-            return BadRequest();
+            var claims = await _userManager.GetClaimsAsync(user);
+            var vm = new EditUserViewModel() { Id = user.Id, Email = user.Email, UserName = user.UserName, UserClaims = claims.Select(c => c.Value).ToList(), City = user.City, Country = user.Country };
+
+            return View(vm);
         }
 
         [HttpPost]
@@ -106,13 +106,14 @@ namespace SanMarinoClassicWebsite.Controllers
 
                 return View(editUserViewModel);
             }
+
             return RedirectToAction("UserManagement", _userManager.Users);
         }
 
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string userId)
         {
-            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId);
 
             if (user != null)
             {
@@ -128,6 +129,7 @@ namespace SanMarinoClassicWebsite.Controllers
             }
             return View("UserManagement", _userManager.Users);
         }
+
 
         //Roles management
         public IActionResult RoleManagement()
@@ -324,15 +326,13 @@ namespace SanMarinoClassicWebsite.Controllers
             return View(claimsManagementViewModel);
         }
 
-       /* [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> ManageClaimsForUser(ClaimsManagementViewModel claimsManagementViewModel)
         {
             var user = await _userManager.FindByIdAsync(claimsManagementViewModel.UserId);
-            //dito ako nag add ng braces
+
             if (user == null)
-            {
                 return RedirectToAction("UserManagement", _userManager.Users);
-            }
 
             IdentityUserClaim<string> claim =
                 new IdentityUserClaim<string> { ClaimType = claimsManagementViewModel.ClaimId, ClaimValue = claimsManagementViewModel.ClaimId };
@@ -346,7 +346,7 @@ namespace SanMarinoClassicWebsite.Controllers
             ModelState.AddModelError("", "User not updated, something went wrong.");
 
             return View(claimsManagementViewModel);
-        }*/
+        }
     }
 }
 
