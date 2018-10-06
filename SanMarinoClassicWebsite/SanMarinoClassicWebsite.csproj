@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>WinExe</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,11 +14,14 @@
     <Compile Remove="Migrations\20180924074636_ApplicationUser.Designer.cs" />
     <Compile Remove="Migrations\20180924083534_ApplicationUserUpdated.cs" />
     <Compile Remove="Migrations\20180924083534_ApplicationUserUpdated.Designer.cs" />
+    <Compile Remove="Migrations\20181001145324_MigrateToAnotherUser.cs" />
+    <Compile Remove="Migrations\20181001145324_MigrateToAnotherUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="PayPal" Version="2.0.0-beta00" />
   </ItemGroup>
 
 </Project>

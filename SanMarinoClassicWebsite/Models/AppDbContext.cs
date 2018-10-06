@@ -24,7 +24,38 @@ namespace SanMarinoClassicWebsite.Models
 
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<OrderDetail> OrderDetails { get; set; } 
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            //builder.Entity<Pie>()
+            //    .HasOne(p => p.RecipeInformation)
+            //    .WithOne(i => i.Pie)
+            //    .HasForeignKey<RecipeInformation>(b => b.PieId);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(e => e.Claims)
+                .WithOne()
+                .HasForeignKey(e => e.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
+        public DbSet<Status> Statuses { get; set; }
+
+        public DbSet<Equipment> Equipments { get; set; }
+
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
+
+        public DbSet<MonthlyDue> Dues { get; set; }
+
+        public DbSet<MonthlyDueRecord> MonthlyDues { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }    
     }
 
   

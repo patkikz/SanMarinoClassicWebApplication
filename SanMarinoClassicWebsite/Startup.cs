@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SanMarinoClassicWebsite.Auth;
 using SanMarinoClassicWebsite.Models;
+
 
 namespace SanMarinoClassicWebsite
 {
@@ -41,14 +38,22 @@ namespace SanMarinoClassicWebsite
                 
             }
 )
-                .AddEntityFrameworkStores<AppDbContext>(); 
+            .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders(); 
             
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IPieRepository, PieRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddTransient<IOrderRepository, OrderRepository>();
+
             services.AddMvc();
+
+
+
+            //services.AddSingleton(factory => new PayPalHttpClientFactory(
+            //    Configuration["PayPal:ClientId"],
+            //    Configuration["PayPal:ClientSecret"],
+            //    Convert.ToBoolean(Configuration["PayPal:IsLive"]))); // Is Live Environment?
 
             services.AddAuthorization(options =>
                 {

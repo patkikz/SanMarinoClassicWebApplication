@@ -1,4 +1,0 @@
-C:\Users\RML\Desktop\MyGithubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp1.1\SanMarinoClassicWebsite.csprojAssemblyReference.cache
-C:\Users\RML\Desktop\MyGithubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp1.1\SanMarinoClassicWebsite.csproj.CoreCompileInputs.cache
-C:\Users\RML\Desktop\MyGithubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp1.1\SanMarinoClassicWebsite.AssemblyInfoInputs.cache
-C:\Users\RML\Desktop\MyGithubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp1.1\SanMarinoClassicWebsite.AssemblyInfo.cs

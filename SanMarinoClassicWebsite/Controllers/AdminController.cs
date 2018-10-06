@@ -13,7 +13,7 @@ using SanMarinoClassicWebsite.Auth;
 
 namespace SanMarinoClassicWebsite.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
