@@ -25,6 +25,7 @@
       "SanMarinoClassicWebsite/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.1.4",
+          "Microsoft.AspNetCore.Authentication.Google": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
           "NETStandard.Library": "2.0.3",
           "PayPal": "2.0.0-beta00"

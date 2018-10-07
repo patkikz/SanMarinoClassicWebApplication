@@ -1,12 +1,15 @@
 ﻿@model LoginViewModel
-
+@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Identity
+@using SanMarinoClassicWebsite.Auth
+@inject SignInManager<ApplicationUser> SignInManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
     <link rel="stylesheet" type="text/css" href="~/SignIn/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/SignIn/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -27,9 +30,9 @@
     <!--===============================================================================================-->
 </head>
 <body>
-   
+
     <div class="limiter">
-      
+
         <div class="container-login100">
             <div class="wrap-login100">
                 <form class="login100-form validate-form" asp-controller="Account" asp-action="Login">
@@ -66,8 +69,44 @@
                     </div>
 
                 </form>
+
                 <div class="login100-more" style="background-image: url('../../wwwroot/SignIn/images/loginbg.png');"></div>
 
+                <div class="col-md-12">
+                    <section>
+                        <h4>Or use another service to log in!</h4>
+                        @{
+                            var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                            if (loginProviders.Count == 0)
+                            {
+                                <div>
+                                    <p>
+                                        There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                        for details on setting up this ASP.NET application to support logging in via external services.
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+
+                                <a class="btn btn-info" asp-action="GoogleLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                                    Google
+                                </a>
+
+                                @*<form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in loginProviders)
+                                    {
+                                        <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.DisplayName account">@provider.AuthenticationScheme</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>*@
+                            }
+                    }
+                    </section>
+                </div>
             </div>
         </div>
     </div>

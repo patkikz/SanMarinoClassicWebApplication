@@ -13608,6 +13608,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.AspNetCore.All >= 2.1.4",
+      "Microsoft.AspNetCore.Authentication.Google >= 2.1.2",
       "Microsoft.NETCore.App >= 2.1.0",
       "NETStandard.Library >= 2.0.3",
       "PayPal >= 2.0.0-beta00"
@@ -13620,11 +13621,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jolina\\Gits\\SanMarinoClassicWebApplication\\SanMarinoClassicWebsite\\SanMarinoClassicWebsite.csproj",
+      "projectUniqueName": "C:\\Users\\Jolina\\Desktop\\GitHubProjects\\SanMarinoClassicWebApplication\\SanMarinoClassicWebsite\\SanMarinoClassicWebsite.csproj",
       "projectName": "SanMarinoClassicWebsite",
-      "projectPath": "C:\\Users\\Jolina\\Gits\\SanMarinoClassicWebApplication\\SanMarinoClassicWebsite\\SanMarinoClassicWebsite.csproj",
+      "projectPath": "C:\\Users\\Jolina\\Desktop\\GitHubProjects\\SanMarinoClassicWebApplication\\SanMarinoClassicWebsite\\SanMarinoClassicWebsite.csproj",
       "packagesPath": "C:\\Users\\Jolina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jolina\\Gits\\SanMarinoClassicWebApplication\\SanMarinoClassicWebsite\\obj\\",
+      "outputPath": "C:\\Users\\Jolina\\Desktop\\GitHubProjects\\SanMarinoClassicWebApplication\\SanMarinoClassicWebsite\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13657,6 +13658,10 @@
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "[2.1.4, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[2.1.2, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
