@@ -1,5 +1,8 @@
-﻿using System;
+﻿using SanMarinoClassicWebsite.Auth;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,5 +21,8 @@ namespace SanMarinoClassicWebsite.Models
         public virtual Equipment Equipment { get; set; }
 
         public virtual Status Status { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -59,7 +59,7 @@ using SanMarinoClassicWebsite.ViewModels;
             WriteLiteral("<li class=\"dropdown\">\r\n    ");
             EndContext();
             BeginContext(57, 135, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f141e8782f254620a39810c85fd8a6f5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "269347866ccc4d3d8b15b1e0dafbe14e", async() => {
                 BeginContext(163, 25, true);
                 WriteLiteral("Pies<b class=\"caret\"></b>");
                 EndContext();
@@ -94,7 +94,7 @@ using SanMarinoClassicWebsite.ViewModels;
             WriteLiteral("            <li>\r\n                ");
             EndContext();
             BeginContext(313, 132, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b83ecdd537354a87afada380b02ffa7b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e851a29c26fd4c1ca629200a8abc2d14", async() => {
                 BeginContext(420, 21, false);
 #line 11 "C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\Views\Shared\Components\CategoryMenu\Default.cshtml"
                                                           Write(category.CategoryName);
@@ -144,7 +144,7 @@ using SanMarinoClassicWebsite.ViewModels;
             WriteLiteral("        <li class=\"divider\"></li>\r\n        <li>\r\n            ");
             EndContext();
             BeginContext(540, 81, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f29dd45d2e184a5fa6a8f3daf7d5b713", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34dbe04cd658425ebd96919fef0eab50", async() => {
                 BeginContext(604, 13, true);
                 WriteLiteral("View all pies");
                 EndContext();

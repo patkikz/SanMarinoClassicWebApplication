@@ -41,6 +41,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", ConcurrencyStamp = "20c67895-d1ae-4617-8d4f-5f1d6567a1d7", Name = "Administrator", NormalizedName = "ADMINISTRATOR" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -112,6 +116,10 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new { UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575", RoleId = "a18be9c0-aa65-4af8-bd17-00bd9344e575" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -150,6 +158,10 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -184,6 +196,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", AccessFailedCount = 0, Birthdate = new DateTime(2018, 10, 14, 13, 58, 33, 276, DateTimeKind.Local), City = "Manila", ConcurrencyStamp = "f31550c5-4c8b-41a0-b6ac-c84851e3b668", Country = "Philippines", Email = "admin123@admin.com", EmailConfirmed = false, FirstName = "Administrator", LastName = "Admin", LockoutEnabled = false, NormalizedEmail = "ADMIN123@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEFNQqffZ6zqf4BNjjxk6zHlchs+bXyVzYuFwHP3+yHlp5hRsGXa9rsjQq0ZrF4bEOQ==", PhoneNumberConfirmed = false, SecurityStamp = "", TwoFactorEnabled = false, UserName = "admin" }
+                    );
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Category", b =>
@@ -254,9 +270,13 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<int>("MonthlyDueId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("MonthlyDueRecordId");
 
                     b.HasIndex("MonthlyDueId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("MonthlyDues");
                 });
@@ -402,11 +422,15 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<int>("StatusId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("ReservationId");
 
                     b.HasIndex("EquipmentId");
 
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -502,6 +526,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .WithMany()
                         .HasForeignKey("MonthlyDueId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.OrderDetail", b =>
@@ -544,6 +572,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.ShoppingCartItem", b =>

@@ -135,6 +135,8 @@ namespace SanMarinoClassicWebsite.Controllers
 
             var user = new ApplicationUser
             {
+                FirstName = info.Principal.FindFirst(ClaimTypes.GivenName).Value,
+                LastName = info.Principal.FindFirst(ClaimTypes.Surname).Value,
                 Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
                 UserName = info.Principal.FindFirst(ClaimTypes.Email).Value
             };

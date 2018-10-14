@@ -30,6 +30,41 @@ namespace SanMarinoClassicWebsite.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            const string ADMIN_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e575";
+            // any guid, but nothing is against to use the same one
+            const string ROLE_ID = ADMIN_ID;
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = ROLE_ID,
+                Name = "Administrator",
+                NormalizedName = "ADMINISTRATOR"
+            });
+
+            var hasher = new PasswordHasher<ApplicationUser>();
+            builder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = ADMIN_ID,
+                UserName = "admin",
+                NormalizedUserName = "ADMIN",
+                Email = "admin123@admin.com",
+                NormalizedEmail = "ADMIN123@ADMIN.COM",
+                EmailConfirmed = false,
+                PasswordHash = hasher.HashPassword(null, "Admin!234"),
+                SecurityStamp = string.Empty,
+                Birthdate = DateTime.Now,
+                FirstName = "Administrator",
+                LastName = "Admin",
+                City = "Manila",
+                Country = "Philippines"
+                
+            });
+
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = ROLE_ID,
+                UserId = ADMIN_ID
+            });
+
             //builder.Entity<Pie>()
             //    .HasOne(p => p.RecipeInformation)
             //    .WithOne(i => i.Pie)
@@ -53,9 +88,9 @@ namespace SanMarinoClassicWebsite.Models
 
         public DbSet<MonthlyDueRecord> MonthlyDues { get; set; }
 
-        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
-        public DbSet<Payment> Payments { get; set; }    
+        public DbSet<Reservation> Reservations { get; set; }
     }
 
   

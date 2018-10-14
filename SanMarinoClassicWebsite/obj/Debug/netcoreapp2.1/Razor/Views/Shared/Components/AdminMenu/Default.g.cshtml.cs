@@ -57,7 +57,7 @@ using SanMarinoClassicWebsite.ViewModels;
             WriteLiteral("\r\n<li class=\"dropdown\">\r\n    ");
             EndContext();
             BeginContext(99, 138, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8b385a56561c41c29b3b499e27537d46", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81b28657a5cc4b969667674f7730fcb1", async() => {
                 BeginContext(207, 26, true);
                 WriteLiteral("Admin<b class=\"caret\"></b>");
                 EndContext();
@@ -92,7 +92,7 @@ using SanMarinoClassicWebsite.ViewModels;
             WriteLiteral("            <li>\r\n                ");
             EndContext();
             BeginContext(358, 85, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37e46f5e6d21427f81d68f5895895507", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "299008bb97254732b212e221ebd8fd78", async() => {
                 BeginContext(418, 21, false);
 #line 11 "C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\Views\Shared\Components\AdminMenu\Default.cshtml"
                                                                       Write(menuItem.DisplayValue);

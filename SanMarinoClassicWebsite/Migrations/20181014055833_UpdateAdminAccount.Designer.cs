@@ -10,8 +10,8 @@ using SanMarinoClassicWebsite.Models;
 namespace SanMarinoClassicWebsite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181002055353_AddedStatusAndEquipments")]
-    partial class AddedStatusAndEquipments
+    [Migration("20181014055833_UpdateAdminAccount")]
+    partial class UpdateAdminAccount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", ConcurrencyStamp = "20c67895-d1ae-4617-8d4f-5f1d6567a1d7", Name = "Administrator", NormalizedName = "ADMINISTRATOR" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -114,6 +118,10 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new { UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575", RoleId = "a18be9c0-aa65-4af8-bd17-00bd9344e575" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -152,6 +160,10 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -186,6 +198,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", AccessFailedCount = 0, Birthdate = new DateTime(2018, 10, 14, 13, 58, 33, 276, DateTimeKind.Local), City = "Manila", ConcurrencyStamp = "f31550c5-4c8b-41a0-b6ac-c84851e3b668", Country = "Philippines", Email = "admin123@admin.com", EmailConfirmed = false, FirstName = "Administrator", LastName = "Admin", LockoutEnabled = false, NormalizedEmail = "ADMIN123@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEFNQqffZ6zqf4BNjjxk6zHlchs+bXyVzYuFwHP3+yHlp5hRsGXa9rsjQq0ZrF4bEOQ==", PhoneNumberConfirmed = false, SecurityStamp = "", TwoFactorEnabled = false, UserName = "admin" }
+                    );
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Category", b =>
@@ -209,9 +225,7 @@ namespace SanMarinoClassicWebsite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EquipmentTypeId");
-
-                    b.Property<int>("TypeId");
+                    b.Property<int>("EquipmentTypeId");
 
                     b.HasKey("EquipmentId");
 
@@ -231,6 +245,42 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.HasKey("EquipmentTypeId");
 
                     b.ToTable("EquipmentTypes");
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.MonthlyDue", b =>
+                {
+                    b.Property<int>("MonthlyDueId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount");
+
+                    b.HasKey("MonthlyDueId");
+
+                    b.ToTable("Dues");
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.MonthlyDueRecord", b =>
+                {
+                    b.Property<int>("MonthlyDueRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateDue");
+
+                    b.Property<DateTime>("DatePaid");
+
+                    b.Property<int>("MonthlyDueId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("MonthlyDueRecordId");
+
+                    b.HasIndex("MonthlyDueId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("MonthlyDues");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Order", b =>
@@ -310,6 +360,25 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount");
+
+                    b.Property<DateTime>("DatePayment");
+
+                    b.Property<int>("ReservationId");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("ReservationId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Pie", b =>
                 {
                     b.Property<int>("PieId")
@@ -341,6 +410,31 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Pies");
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Reservation", b =>
+                {
+                    b.Property<int>("ReservationId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateReserved");
+
+                    b.Property<int>("EquipmentId");
+
+                    b.Property<int>("StatusId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ReservationId");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.ShoppingCartItem", b =>
@@ -424,7 +518,20 @@ namespace SanMarinoClassicWebsite.Migrations
                 {
                     b.HasOne("SanMarinoClassicWebsite.Models.EquipmentType", "EquipmentType")
                         .WithMany()
-                        .HasForeignKey("EquipmentTypeId");
+                        .HasForeignKey("EquipmentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.MonthlyDueRecord", b =>
+                {
+                    b.HasOne("SanMarinoClassicWebsite.Models.MonthlyDue", "MonthlyDue")
+                        .WithMany()
+                        .HasForeignKey("MonthlyDueId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.OrderDetail", b =>
@@ -440,12 +547,37 @@ namespace SanMarinoClassicWebsite.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Payment", b =>
+                {
+                    b.HasOne("SanMarinoClassicWebsite.Models.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Pie", b =>
                 {
                     b.HasOne("SanMarinoClassicWebsite.Models.Category", "Category")
                         .WithMany("Pies")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Reservation", b =>
+                {
+                    b.HasOne("SanMarinoClassicWebsite.Models.Equipment", "Equipment")
+                        .WithMany()
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.ShoppingCartItem", b =>

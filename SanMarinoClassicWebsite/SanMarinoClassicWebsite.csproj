@@ -8,14 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180923113341_ApplicationUserUpdate.cs" />
-    <Compile Remove="Migrations\20180923113341_ApplicationUserUpdate.Designer.cs" />
-    <Compile Remove="Migrations\20180924074636_ApplicationUser.cs" />
-    <Compile Remove="Migrations\20180924074636_ApplicationUser.Designer.cs" />
-    <Compile Remove="Migrations\20180924083534_ApplicationUserUpdated.cs" />
-    <Compile Remove="Migrations\20180924083534_ApplicationUserUpdated.Designer.cs" />
-    <Compile Remove="Migrations\20181001145324_MigrateToAnotherUser.cs" />
-    <Compile Remove="Migrations\20181001145324_MigrateToAnotherUser.Designer.cs" />
+    <Compile Remove="Migrations\20181014054618_SeedAdminAccount.cs" />
+    <Compile Remove="Migrations\20181014054618_SeedAdminAccount.Designer.cs" />
+    <Compile Remove="Migrations\20181014055629_UpdateAdminAccount.cs" />
+    <Compile Remove="Migrations\20181014055629_UpdateAdminAccount.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

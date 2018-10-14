@@ -5,7 +5,6 @@ C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoC
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\bin\Debug\netcoreapp2.1\SanMarinoClassicWebsite.pdb
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\bin\Debug\netcoreapp2.1\SanMarinoClassicWebsite.Views.dll
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\bin\Debug\netcoreapp2.1\SanMarinoClassicWebsite.Views.pdb
-C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.csprojAssemblyReference.cache
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.csproj.CoreCompileInputs.cache
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.RazorAssemblyInfo.cache
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.RazorAssemblyInfo.cs
@@ -51,3 +50,4 @@ C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoC
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.dll
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.pdb
 C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.csproj.CopyComplete
+C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\obj\Debug\netcoreapp2.1\SanMarinoClassicWebsite.csprojAssemblyReference.cache

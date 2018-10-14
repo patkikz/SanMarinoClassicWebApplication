@@ -1,26 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace SanMarinoClassicWebsite.Migrations
 {
-    public partial class IdentityUserUpdated : Migration
+    public partial class UpdateApplicationUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<DateTime>(
-                name: "BirthDate",
-                table: "AspNetUsers",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
             migrationBuilder.AddColumn<string>(
-                name: "City",
+                name: "FirstName",
                 table: "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Country",
+                name: "LastName",
                 table: "AspNetUsers",
                 nullable: true);
         }
@@ -28,15 +20,11 @@ namespace SanMarinoClassicWebsite.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "BirthDate",
+                name: "FirstName",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "City",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "Country",
+                name: "LastName",
                 table: "AspNetUsers");
         }
     }

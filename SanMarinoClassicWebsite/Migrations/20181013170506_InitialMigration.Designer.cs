@@ -10,8 +10,8 @@ using SanMarinoClassicWebsite.Models;
 namespace SanMarinoClassicWebsite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181002064459_AddedReservations")]
-    partial class AddedReservations
+    [Migration("20181013170506_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -256,9 +256,13 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<int>("MonthlyDueId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("MonthlyDueRecordId");
 
                     b.HasIndex("MonthlyDueId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("MonthlyDues");
                 });
@@ -340,6 +344,25 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount");
+
+                    b.Property<DateTime>("DatePayment");
+
+                    b.Property<int>("ReservationId");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("ReservationId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Pie", b =>
                 {
                     b.Property<int>("PieId")
@@ -385,11 +408,15 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<int>("StatusId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("ReservationId");
 
                     b.HasIndex("EquipmentId");
 
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -485,6 +512,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .WithMany()
                         .HasForeignKey("MonthlyDueId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.OrderDetail", b =>
@@ -497,6 +528,14 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.HasOne("SanMarinoClassicWebsite.Models.Pie", "Pie")
                         .WithMany()
                         .HasForeignKey("PieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Payment", b =>
+                {
+                    b.HasOne("SanMarinoClassicWebsite.Models.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -519,6 +558,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.ShoppingCartItem", b =>

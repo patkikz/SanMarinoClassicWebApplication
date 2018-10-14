@@ -10,8 +10,8 @@ using SanMarinoClassicWebsite.Models;
 namespace SanMarinoClassicWebsite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181002064824_AddedPayments")]
-    partial class AddedPayments
+    [Migration("20181013174651_UpdateApplicationUser")]
+    partial class UpdateApplicationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,10 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -256,9 +260,13 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<int>("MonthlyDueId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("MonthlyDueRecordId");
 
                     b.HasIndex("MonthlyDueId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("MonthlyDues");
                 });
@@ -404,11 +412,15 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<int>("StatusId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("ReservationId");
 
                     b.HasIndex("EquipmentId");
 
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -504,6 +516,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .WithMany()
                         .HasForeignKey("MonthlyDueId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.OrderDetail", b =>
@@ -546,6 +562,10 @@ namespace SanMarinoClassicWebsite.Migrations
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.ShoppingCartItem", b =>

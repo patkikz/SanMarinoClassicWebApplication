@@ -54,7 +54,7 @@ using SanMarinoClassicWebsite.ViewModels;
             WriteLiteral("\r\n  <h2>Contact San Marino Classic</h2>\r\n    <p>If you have, any questions, please don\'t hesitate to get in touch. Click below to send.</p>\r\n\r\n");
             EndContext();
             BeginContext(143, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("email", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fcc01fb246ec4a43826d59894faad919", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("email", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d2e0f492ca5e4d53b500323560b5462a", async() => {
                 BeginContext(203, 10, true);
                 WriteLiteral("Contact Us");
                 EndContext();

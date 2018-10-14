@@ -51,8 +51,8 @@ namespace SanMarinoClassicWebsite
             services.AddAuthentication()
                .AddGoogle(options =>
                {
-                   options.ClientId = "954504023788-3310g7qon199414inphkkph5e6e7l5uq.apps.googleusercontent.com";
-                   options.ClientSecret = "eoXbks1HafhgRuJJybrAtna7";
+                   options.ClientId = "954504023788-69a9a2fj2u64qhgv6jccnpkk3bi7ejk4.apps.googleusercontent.com";
+                   options.ClientSecret = "6NK9lMSovIuwVa-uuWS5J1R5";
                });
 
 
