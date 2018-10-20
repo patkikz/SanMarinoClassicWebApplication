@@ -8,20 +8,17 @@
 
 
 @if (SignInManager.IsSignedIn(User))
-{
-    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
-          method="post" class="nav-link">
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item"><a asp-controller="Home" asp-action="Index" id="list" class="nav-link">Welcome @UserManager.GetUserAsync(User).Result.FirstName!</a></li>
-            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" id="list" class="nav-link">Log off</a></li>
-        </ul>
+{   
+    <li>
+        <a asp-action="Index" asp-controller="Home" class="nav navbar-brand">Welcome @UserManager.GetUserAsync(User).Result.FirstName!</a>
+    </li>
+    <li>
+        <a asp-controller="Account" asp-action="Logout"  id="list" class="animsition-link">Log off</a>
+    </li>
 
-    </form>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a id="registerLink" asp-controller="Account" asp-action="Register" class="nav-link">Register</a></li>
-        <li><a id="loginLink" asp-controller="Account" asp-action="Login" class="nav-link">Log in</a></li>
-    </ul>
+    <li><a id="registerLink" asp-controller="Account" asp-action="Register">Register</a></li>
+    <li><a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a></li>
 }

@@ -13,7 +13,7 @@ using SanMarinoClassicWebsite.ViewModels;
 
 namespace SanMarinoClassicWebsite.Controllers
 {
-    [Authorize]
+
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -73,7 +73,8 @@ namespace SanMarinoClassicWebsite.Controllers
             {
                 var user = new ApplicationUser() { UserName = registerViewModel.UserName,
                     Email = registerViewModel.Email, Birthdate = registerViewModel.Birthdate,
-                    City = registerViewModel.City, Country = registerViewModel.Country};
+                    City = registerViewModel.City, Country = registerViewModel.Country,
+                    FirstName = registerViewModel.FirstName, LastName = registerViewModel.LastName};
                 var result = await _userManager.CreateAsync(user, registerViewModel.Password);
 
                 if (result.Succeeded)
@@ -89,7 +90,7 @@ namespace SanMarinoClassicWebsite.Controllers
             return View(registerViewModel);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -132,7 +133,7 @@ namespace SanMarinoClassicWebsite.Controllers
 
                 return Redirect(returnUrl);
             }
-
+            
             var user = new ApplicationUser
             {
                 FirstName = info.Principal.FindFirst(ClaimTypes.GivenName).Value,

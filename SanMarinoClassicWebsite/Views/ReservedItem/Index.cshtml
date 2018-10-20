@@ -1,0 +1,39 @@
+﻿@model ReservedItemViewModel
+
+<h2>Your Reservations</h2>
+<h4>Here are your reserved items.</h4>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Selected amount</th>
+            <th>Equipment</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.ReservedItem.Reservations)
+        {
+            <tr>
+                <td class="text-center">@line.Quantity</td>
+                <td class="text-left">@line.Equipment.EquipmentShortDescription</td>
+                <td class="text-right">@line.Equipment.Price.ToString("c")</td>
+                <td class="text-right">
+                    @((line.Quantity * line.Equipment.Price).ToString("c"))
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.ReservationTotal.ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a asp-controller="Rental" asp-action="Checkout" class="btn btn-primary">Check Out now!</a>
+</div>

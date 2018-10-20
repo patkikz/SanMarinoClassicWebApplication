@@ -9,6 +9,10 @@ namespace SanMarinoClassicWebsite.Models
     {
         public int EquipmentTypeId { get; set; }
 
+        public string Name { get; set; }
+
         public string Description { get; set; }
+
+        public List<Equipment> Equipments { get; set; }
     }
 }

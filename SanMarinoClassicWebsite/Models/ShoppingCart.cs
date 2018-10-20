@@ -33,18 +33,18 @@ namespace SanMarinoClassicWebsite.Models
             return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
 
-        public void AddToCart(Pie pie, int amount)
+        public void AddToCart(Equipment equipment, int amount)
         {
             var shoppingCartItem =
                     _appDbContext.ShoppingCartItems.SingleOrDefault(
-                        s => s.Pie.PieId == pie.PieId && s.ShoppingCartId == ShoppingCartId);
+                        s => s.Equipment.EquipmentId == equipment.EquipmentId && s.ShoppingCartId == ShoppingCartId );
 
             if (shoppingCartItem == null)
             {
                 shoppingCartItem = new ShoppingCartItem
                 {
                     ShoppingCartId = ShoppingCartId,
-                    Pie = pie,
+                    Equipment = equipment,
                     Amount = 1
                 };
 
@@ -57,11 +57,13 @@ namespace SanMarinoClassicWebsite.Models
             _appDbContext.SaveChanges();
         }
 
-        public int RemoveFromCart(Pie pie)
+        
+
+        public int RemoveFromCart(Equipment equipment)
         {
             var shoppingCartItem =
                     _appDbContext.ShoppingCartItems.SingleOrDefault(
-                        s => s.Pie.PieId == pie.PieId && s.ShoppingCartId == ShoppingCartId);
+                        s => s.Equipment.EquipmentId == equipment.EquipmentId && s.ShoppingCartId == ShoppingCartId);
 
             var localAmount = 0;
 
@@ -88,7 +90,7 @@ namespace SanMarinoClassicWebsite.Models
             return ShoppingCartItems ??
                    (ShoppingCartItems =
                        _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                           .Include(s => s.Pie)
+                           .Include(s => s.Equipment)
                            .ToList());
         }
 
@@ -108,7 +110,7 @@ namespace SanMarinoClassicWebsite.Models
         public decimal GetShoppingCartTotal()
         {
             var total = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                .Select(c => c.Pie.Price * c.Amount).Sum();
+                .Select(c => c.Equipment.Price * c.Amount).Sum();
             return total;
         }
     }

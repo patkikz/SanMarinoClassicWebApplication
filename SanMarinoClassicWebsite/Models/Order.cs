@@ -11,6 +11,7 @@ namespace SanMarinoClassicWebsite.Models
     {
         [BindNever]
         public int OrderId { get; set; }
+
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First name")]
         [StringLength(50)]

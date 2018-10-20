@@ -78,7 +78,7 @@ WriteAttributeValue("", 103, Model.ImageThumbnailUrl, 103, 24, false);
             WriteLiteral("</h3>\r\n            <h3>\r\n                ");
             EndContext();
             BeginContext(273, 88, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "95b96fc63c07479ebc1d2d1a6fe079f4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0e54cb5d65142d7a15a69cc0ed92a65", async() => {
                 BeginContext(347, 10, false);
 #line 9 "C:\Users\Jolina\Desktop\GitHubProjects\SanMarinoClassicWebApplication\SanMarinoClassicWebsite\Views\Shared\PiesOfTheWeekSummary.cshtml"
                                                                                     Write(Model.Name);
@@ -129,7 +129,7 @@ WriteAttributeValue("", 103, Model.ImageThumbnailUrl, 103, 24, false);
             WriteLiteral("</p>\r\n        </div>\r\n        <div class=\"addToCart\">\r\n            <p class=\"button\">\r\n                ");
             EndContext();
             BeginContext(523, 174, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5210b62ca2fe4421a493ead8a052a640", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a768ab5641c644b08a25a53f5de3e5f7", async() => {
                 BeginContext(642, 51, true);
                 WriteLiteral("\r\n                    Add to Cart\r\n                ");
                 EndContext();

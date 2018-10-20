@@ -29,10 +29,10 @@ namespace SanMarinoClassicWebsite.Models
             {
                 var orderDetail = new OrderDetail()
                 {
-                    Amount = shoppingCartItem.Amount,
-                    PieId = shoppingCartItem.Pie.PieId,
-                    OrderId = order.OrderId,
-                    Price = shoppingCartItem.Pie.Price
+                    //Amount = shoppingCartItem.Amount,
+                    //PieId = shoppingCartItem.Pie.PieId,
+                    //OrderId = order.OrderId,
+                    //Price = shoppingCartItem.Pie.Price
                 };
 
                 _appDbContext.OrderDetails.Add(orderDetail);

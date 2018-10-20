@@ -8,17 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20181014054618_SeedAdminAccount.cs" />
-    <Compile Remove="Migrations\20181014054618_SeedAdminAccount.Designer.cs" />
-    <Compile Remove="Migrations\20181014055629_UpdateAdminAccount.cs" />
-    <Compile Remove="Migrations\20181014055629_UpdateAdminAccount.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="2.1.2" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="PayPal" Version="2.0.0-beta00" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Content\" />
   </ItemGroup>
 
 </Project>

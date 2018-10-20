@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SanMarinoClassicWebsite.Auth;
 using SanMarinoClassicWebsite.Models;
-
+using System.Globalization;
 
 namespace SanMarinoClassicWebsite
 {
@@ -18,6 +18,8 @@ namespace SanMarinoClassicWebsite
 
         public Startup(IHostingEnvironment hostingEnvironment)
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("fil-PH");
+
             _configurationRoot = new ConfigurationBuilder()
                    .SetBasePath(hostingEnvironment.ContentRootPath)
                    .AddJsonFile("appsettings.json")
@@ -40,11 +42,16 @@ namespace SanMarinoClassicWebsite
 )
             .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders(); 
             
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
-            services.AddTransient<IPieRepository, PieRepository>();
+            services.AddTransient<IEquipmentTypeRepository, EquipmentTypeRepository>();
+            services.AddTransient<IEquipmentRepository, EquipmentRepository>();
+            //services.AddTransient<IPieRepository, PieRepository>();
+            //services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShoppingCart.GetCart(sp));
-            services.AddTransient<IOrderRepository, OrderRepository>();
+            //services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddScoped(rp => ReservedItem.GetReserved(rp));
+            services.AddTransient<IReservationRepository, ReservationRepository>();
+            //services.AddTransient<IStatusRepository, StatusRepository>();
+            services.AddTransient<IRentalRepository, RentalRepository>();
 
             services.AddMvc();
 
@@ -85,6 +92,7 @@ namespace SanMarinoClassicWebsite
 
             app.UseStaticFiles();
             app.UseSession();
+            app.UseCookiePolicy();
             app.UseAuthentication();
 
             loggerFactory.AddConsole(LogLevel.Debug);
@@ -103,9 +111,16 @@ namespace SanMarinoClassicWebsite
                     defaults: new {Controller ="Pie", action ="List"});
 
                 routes.MapRoute(
+                    name: "typefilter",
+                    template: "Equipment/{action}/{type?}",
+                    defaults: new { Controller = "Equipment", action = "List" });
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
 
         }
     }

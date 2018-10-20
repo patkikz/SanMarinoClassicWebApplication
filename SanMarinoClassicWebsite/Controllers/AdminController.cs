@@ -25,10 +25,13 @@ namespace SanMarinoClassicWebsite.Controllers
             _roleManager = roleManager;
         }
 
+
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            var user = _userManager.Users;
+
+            return View(user);
         }
 
         public IActionResult UserManagement()
@@ -50,6 +53,8 @@ namespace SanMarinoClassicWebsite.Controllers
 
             var user = new ApplicationUser()
             {
+                FirstName = addUserViewModel.FirstName,
+                LastName = addUserViewModel.LastName,
                 UserName = addUserViewModel.UserName,
                 Email = addUserViewModel.Email,
                 Birthdate = addUserViewModel.Birthdate,
@@ -79,7 +84,7 @@ namespace SanMarinoClassicWebsite.Controllers
                 return RedirectToAction("UserManagement", _userManager.Users);
 
             var claims = await _userManager.GetClaimsAsync(user);
-            var vm = new EditUserViewModel() { Id = user.Id, Email = user.Email, UserName = user.UserName, UserClaims = claims.Select(c => c.Value).ToList(), City = user.City, Country = user.Country };
+            var vm = new EditUserViewModel() { Id = user.Id, FirstName= user.FirstName,LastName = user.LastName, Email = user.Email, UserName = user.UserName, UserClaims = claims.Select(c => c.Value).ToList(), City = user.City, Country = user.Country };
 
             return View(vm);
         }
@@ -91,6 +96,8 @@ namespace SanMarinoClassicWebsite.Controllers
 
             if (user != null)
             {
+                user.FirstName = editUserViewModel.FirstName;
+                user.LastName = editUserViewModel.LastName;
                 user.Email = editUserViewModel.Email;
                 user.UserName = editUserViewModel.UserName;
                 user.Birthdate = editUserViewModel.Birthdate;

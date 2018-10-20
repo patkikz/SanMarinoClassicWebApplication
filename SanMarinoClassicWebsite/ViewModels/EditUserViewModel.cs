@@ -10,6 +10,14 @@ namespace SanMarinoClassicWebsite.ViewModels
     {
         public string Id { get; set; }
 
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "LastName")]
+        public string LastName { get; set; }
+
         [Required(ErrorMessage = "Please enter the user name")]
         [Display(Name = "User name")]
         public string UserName { get; set; }

@@ -1,13 +1,19 @@
 ﻿@model IEnumerable<SanMarinoClassicWebsite.Components.AdminMenuItem>
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@using SanMarinoClassicWebsite.Auth
 
-<li class="dropdown">
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<li class="active">
     <a asp-controller="Admin"
        asp-action="Index"
-       class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-    <ul class="dropdown-menu">
+       class="animsition-link">@UserManager.GetUserAsync(User).Result.FirstName!</a>
+    <ul>
         @foreach (var menuItem in Model)
         {
-            <li>
+            <li class="animsition-link">
                 <a asp-controller="Admin" asp-action=@menuItem.ActionValue>@menuItem.DisplayValue</a>
             </li>
         }

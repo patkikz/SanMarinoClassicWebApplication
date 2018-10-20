@@ -43,7 +43,7 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", ConcurrencyStamp = "20c67895-d1ae-4617-8d4f-5f1d6567a1d7", Name = "Administrator", NormalizedName = "ADMINISTRATOR" }
+                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", ConcurrencyStamp = "595d14ce-1b62-4a02-93c1-a8c162611596", Name = "Administrator", NormalizedName = "ADMINISTRATOR" }
                     );
                 });
 
@@ -198,7 +198,7 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", AccessFailedCount = 0, Birthdate = new DateTime(2018, 10, 14, 13, 58, 33, 276, DateTimeKind.Local), City = "Manila", ConcurrencyStamp = "f31550c5-4c8b-41a0-b6ac-c84851e3b668", Country = "Philippines", Email = "admin123@admin.com", EmailConfirmed = false, FirstName = "Administrator", LastName = "Admin", LockoutEnabled = false, NormalizedEmail = "ADMIN123@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEFNQqffZ6zqf4BNjjxk6zHlchs+bXyVzYuFwHP3+yHlp5hRsGXa9rsjQq0ZrF4bEOQ==", PhoneNumberConfirmed = false, SecurityStamp = "", TwoFactorEnabled = false, UserName = "admin" }
+                        new { Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575", AccessFailedCount = 0, Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), City = "Manila", ConcurrencyStamp = "3ac1c559-2eb5-42d8-80e0-915f56fe2022", Country = "Philippines", Email = "admin123@admin.com", EmailConfirmed = false, FirstName = "Administrator", LastName = "Admin", LockoutEnabled = false, NormalizedEmail = "ADMIN123@ADMIN.COM", NormalizedUserName = "ADMIN", PasswordHash = "AQAAAAEAACcQAAAAEFzpo211rSTAfs2ujusZIa18XqRtKWLxqP6EeodrgJMatsj3hJtqfB2JEMs1ojzl5w==", PhoneNumberConfirmed = false, SecurityStamp = "", TwoFactorEnabled = false, UserName = "admin" }
                     );
                 });
 
@@ -223,7 +223,17 @@ namespace SanMarinoClassicWebsite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("EquipmentShortDescription");
+
                     b.Property<int>("EquipmentTypeId");
+
+                    b.Property<string>("ImageThumbnailUrl");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<bool>("IsInStock");
+
+                    b.Property<decimal>("Price");
 
                     b.HasKey("EquipmentId");
 
@@ -239,6 +249,8 @@ namespace SanMarinoClassicWebsite.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("Name");
 
                     b.HasKey("EquipmentTypeId");
 
@@ -410,29 +422,127 @@ namespace SanMarinoClassicWebsite.Migrations
                     b.ToTable("Pies");
                 });
 
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Rental", b =>
+                {
+                    b.Property<int>("RentalId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressLine1")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("AddressLine2")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.Property<DateTime>("RentalPlaced");
+
+                    b.Property<decimal>("RentalTotal");
+
+                    b.Property<string>("State")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.HasKey("RentalId");
+
+                    b.ToTable("Rentals");
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.RentalDetail", b =>
+                {
+                    b.Property<int>("RentalDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EquipmentId");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<int>("RentalId");
+
+                    b.HasKey("RentalDetailId");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.HasIndex("RentalId");
+
+                    b.ToTable("RentalDetails");
+                });
+
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Reservation", b =>
                 {
                     b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateReserved");
+                    b.Property<int?>("EquipmentId");
 
-                    b.Property<int>("EquipmentId");
+                    b.Property<int>("Quantity");
 
-                    b.Property<int>("StatusId");
-
-                    b.Property<string>("UserId");
+                    b.Property<string>("ReservedItemId");
 
                     b.HasKey("ReservationId");
 
                     b.HasIndex("EquipmentId");
 
+                    b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.ReservationDetail", b =>
+                {
+                    b.Property<int>("ReservationDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int>("EquipmentId");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<int>("ReservationId");
+
+                    b.Property<int>("StatusId");
+
+                    b.HasKey("ReservationDetailId");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.HasIndex("ReservationId");
+
                     b.HasIndex("StatusId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Reservations");
+                    b.ToTable("ReservationDetails");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.ShoppingCartItem", b =>
@@ -443,13 +553,13 @@ namespace SanMarinoClassicWebsite.Migrations
 
                     b.Property<int>("Amount");
 
-                    b.Property<int?>("PieId");
+                    b.Property<int?>("EquipmentId");
 
                     b.Property<string>("ShoppingCartId");
 
                     b.HasKey("ShoppingCartItemId");
 
-                    b.HasIndex("PieId");
+                    b.HasIndex("EquipmentId");
 
                     b.ToTable("ShoppingCartItems");
                 });
@@ -515,7 +625,7 @@ namespace SanMarinoClassicWebsite.Migrations
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.Equipment", b =>
                 {
                     b.HasOne("SanMarinoClassicWebsite.Models.EquipmentType", "EquipmentType")
-                        .WithMany()
+                        .WithMany("Equipments")
                         .HasForeignKey("EquipmentTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -561,28 +671,49 @@ namespace SanMarinoClassicWebsite.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Reservation", b =>
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.RentalDetail", b =>
                 {
                     b.HasOne("SanMarinoClassicWebsite.Models.Equipment", "Equipment")
                         .WithMany()
                         .HasForeignKey("EquipmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("SanMarinoClassicWebsite.Models.Rental", "Rental")
+                        .WithMany()
+                        .HasForeignKey("RentalId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.Reservation", b =>
+                {
+                    b.HasOne("SanMarinoClassicWebsite.Models.Equipment", "Equipment")
+                        .WithMany()
+                        .HasForeignKey("EquipmentId");
+                });
+
+            modelBuilder.Entity("SanMarinoClassicWebsite.Models.ReservationDetail", b =>
+                {
+                    b.HasOne("SanMarinoClassicWebsite.Models.Equipment", "Equipment")
+                        .WithMany()
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SanMarinoClassicWebsite.Models.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SanMarinoClassicWebsite.Models.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SanMarinoClassicWebsite.Auth.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SanMarinoClassicWebsite.Models.ShoppingCartItem", b =>
                 {
-                    b.HasOne("SanMarinoClassicWebsite.Models.Pie", "Pie")
+                    b.HasOne("SanMarinoClassicWebsite.Models.Equipment", "Equipment")
                         .WithMany()
-                        .HasForeignKey("PieId");
+                        .HasForeignKey("EquipmentId");
                 });
 #pragma warning restore 612, 618
         }

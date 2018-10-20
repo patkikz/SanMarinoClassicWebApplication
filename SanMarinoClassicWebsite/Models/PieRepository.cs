@@ -22,6 +22,7 @@ namespace SanMarinoClassicWebsite.Models
                 return _appDbContext.Pies.Include(c => c.Category);
             }
         }
+
         public IEnumerable<Pie> IsPieOfTheWeek
         {
             get

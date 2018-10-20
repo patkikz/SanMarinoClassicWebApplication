@@ -1,4 +1,5 @@
-﻿using SanMarinoClassicWebsite.Auth;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using SanMarinoClassicWebsite.Auth;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,17 +13,10 @@ namespace SanMarinoClassicWebsite.Models
     {
         public int ReservationId { get; set; }
 
-        public int EquipmentId { get; set; }
+        public Equipment Equipment { get; set; }
 
-        public int StatusId { get; set; }
+        public int Quantity { get; set; }
 
-        public DateTime DateReserved { get; set; }
-
-        public virtual Equipment Equipment { get; set; }
-
-        public virtual Status Status { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public string ReservedItemId { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model EquipmentListViewModel
+
+
+@foreach (var equipment in Model.Equipments)
+{
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@equipment.ImageThumbnailUrl" alt="">
+                <div class="caption">
+                    <h3 class="pull-right">@equipment.Price.ToString("c")</h3>
+                    <h3>
+                        <a asp-controller="Equipment" asp-action="Details" asp-route-id="@equipment.EquipmentId">@equipment.EquipmentShortDescription</a>
+                    </h3>
+                </div>
+                <div class="addToCart">
+                    <p class="button">
+                        <a class="btn btn-primary" asp-controller="ReservedItem" asp-action="AddToReservation"
+                           asp-route-equipmentId="@equipment.EquipmentId">Reserve Now!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }

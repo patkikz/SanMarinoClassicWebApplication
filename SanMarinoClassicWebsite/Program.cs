@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace SanMarinoClassicWebsite
     {
         public static void Main(string[] args)
         {
-            //BuildWebHost(args).Run();
+            
+      
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope())
@@ -30,7 +32,7 @@ namespace SanMarinoClassicWebsite
                 }
                 catch
                 {
-                    // we could log this in real world situation
+                    
                 }
             }
 

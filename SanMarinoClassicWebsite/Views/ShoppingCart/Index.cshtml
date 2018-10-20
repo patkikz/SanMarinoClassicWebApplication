@@ -6,7 +6,7 @@
     <thead>
         <tr>
             <th>Selected amount</th>
-            <th>Pie</th>
+            <th>Equipment</th>
             <th class="text-right">Price</th>
             <th class="text-right">Subtotal</th>
         </tr>
@@ -16,10 +16,10 @@
         {
             <tr>
                 <td class="text-center">@line.Amount</td>
-                <td class="text-left">@line.Pie.Name</td>
-                <td class="text-right">@line.Pie.Price.ToString("c")</td>
+                <td class="text-left">@line.Equipment.EquipmentShortDescription</td>
+                <td class="text-right">@line.Equipment.Price.ToString("c")</td>
                 <td class="text-right">
-                    @((line.Amount * line.Pie.Price).ToString("c"))
+                    @((line.Amount * line.Equipment.Price).ToString("c"))
                 </td>
             </tr>
         }
@@ -35,5 +35,5 @@
 </table>
 
 <div class="text-center">
-    <a asp-controller="Order" asp-action="Checkout" class="btn btn-primary">Check Out now!</a>
+    <a asp-controller="Reservation" asp-action="Checkout" class="btn btn-primary">Check Out now!</a>
 </div>

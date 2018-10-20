@@ -10,7 +10,14 @@ namespace SanMarinoClassicWebsite.Components
     {
         public IViewComponentResult Invoke()
         {
-            var menuItems = new List<AdminMenuItem> { new AdminMenuItem()
+            var menuItems = new List<AdminMenuItem> {
+                   new AdminMenuItem()
+                {
+                    DisplayValue = "DashBoard",
+                    ActionValue = "Index"
+                },
+
+                new AdminMenuItem()
                 {
                     DisplayValue = "User management",
                     ActionValue = "UserManagement"
@@ -20,7 +27,9 @@ namespace SanMarinoClassicWebsite.Components
                 {
                     DisplayValue = "Role management",
                     ActionValue = "RoleManagement"
-                }};
+                }
+
+            };
 
             return View(menuItems);
         }

@@ -26,6 +26,10 @@ namespace SanMarinoClassicWebsite.Models
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
+        public DbSet<Rental> Rentals { get; set; }
+
+        public DbSet<RentalDetail> RentalDetails { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -51,7 +55,6 @@ namespace SanMarinoClassicWebsite.Models
                 EmailConfirmed = false,
                 PasswordHash = hasher.HashPassword(null, "Admin!234"),
                 SecurityStamp = string.Empty,
-                Birthdate = DateTime.Now,
                 FirstName = "Administrator",
                 LastName = "Admin",
                 City = "Manila",
@@ -91,6 +94,8 @@ namespace SanMarinoClassicWebsite.Models
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<Reservation> Reservations { get; set; }
+
+        public DbSet<ReservationDetail> ReservationDetails { get; set; }
     }
 
   

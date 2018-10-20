@@ -17,23 +17,5 @@ namespace SanMarinoClassicWebsite.Controllers
         {
             return View();
         }
-        // GET: /<controller>/
-        //    private readonly IPieRepository _pieRepository;
-
-        //    public HomeController(IPieRepository pieRepository)
-        //    {
-        //        _pieRepository = pieRepository;
-        //    }
-
-        //    public ViewResult Index()
-        //    {
-        //        var homeViewModel = new HomeViewModel
-        //        {
-        //            PiesOfTheWeek = _pieRepository.IsPieOfTheWeek
-        //        };
-
-        //        return View(homeViewModel); 
-        //    }
-        //}
     }
 }

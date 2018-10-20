@@ -11,6 +11,16 @@ namespace SanMarinoClassicWebsite.Models
 
         public int EquipmentTypeId { get; set; }
 
+        public string EquipmentShortDescription { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public string ImageThumbnailUrl { get; set; }
+
+        public decimal Price { get; set; }
+
+        public bool IsInStock { get; set; }
+
         public virtual EquipmentType EquipmentType { get; set; }
     }
 }
